@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>عالم الألعاب والتقنية | GamerZone</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #0f172a;
+            color: #f8fafc;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #1e293b;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #3b82f6;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #3b82f6;
+        }
+
+        .logo span {
+            color: #ef4444;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            color: #f8fafc;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .hero {
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.9)), url('https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=1200&q=80') center/cover;
+            padding: 3rem 1.5rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            margin-bottom: 0.8rem;
+            color: #ffffff;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: #94a3b8;
+            max-width: 600px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        /* تنسيق المساحة الإعلانية */
+        .ad-container {
+            max-width: 1100px;
+            margin: 1.5rem auto;
+            padding: 0 1rem;
+            text-align: center;
+        }
+
+        .ad-box {
+            background-color: #1e293b;
+            border: 2px dashed #334155;
+            padding: 1.5rem;
+            border-radius: 12px;
+            color: #64748b;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            border-right: 4px solid #3b82f6;
+            padding-right: 0.5rem;
+        }
+
+        /* شريط أقسام المنصات والأجهزة */
+        .platform-bar {
+            display: flex;
+            gap: 0.5rem;
+            overflow-x: auto;
+            padding-bottom: 0.8rem;
+            margin-bottom: 2rem;
+            scrollbar-width: thin;
+        }
+
+        .platform-btn {
+            background-color: #1e293b;
+            color: #f8fafc;
+            padding: 0.5rem 1.2rem;
+            border-radius: 20px;
+            border: 1px solid #334155;
+            font-size: 0.9rem;
+            font-weight: bold;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.3s;
+        }
+
+        .platform-btn:hover, .platform-btn.active {
+            background-color: #3b82f6;
+            border-color: #3b82f6;
+            color: white;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .card {
+            background-color: #1e293b;
+            border-radius: 12px;
+            overflow: hidden;
+            padding: 1.2rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease;
+        }
+
+        .card.hide {
+            display: none;
+        }
+
+        .card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 0.8rem;
+        }
+
+        .card-tag {
+            background-color: #3b82f6;
+            color: white;
+            font-size: 0.75rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+            width: fit-content;
+            font-weight: bold;
+        }
+
+        .tag-ps4 { background-color: #003791; }
+        .tag-ps3 { background-color: #000000; }
+        .tag-ps2 { background-color: #111827; }
+        .tag-psp { background-color: #4b5563; }
+        .tag-xbox { background-color: #107c41; }
+        .tag-pc { background-color: #0284c7; }
+        .tag-android { background-color: #16a34a; }
+
+        .card-title {
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-desc {
+            color: #94a3b8;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .download-box {
+            margin-top: auto;
+            padding-top: 0.8rem;
+            border-top: 1px solid #334155;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .btn-download {
+            background-color: #10b981;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-weight: bold;
+            border-radius: 8px;
+            padding: 0.6rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .btn-download:hover {
+            background-color: #059669;
+        }
+
+        .btn-gofile {
+            background-color: #3b82f6;
+        }
+        .btn-gofile:hover {
+            background-color: #2563eb;
+        }
+
+        /* تنسيق عداد الزوار */
+        .visitor-counter {
+            margin-top: 1rem;
+            font-size: 0.85rem;
+            color: #94a3b8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+        }
+
+        footer {
+            background-color: #020617;
+            text-align: center;
+            padding: 1.5rem;
+            margin-top: 4rem;
+            color: #64748b;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="logo">GAMER<span>ZONE</span></div>
+        <nav>
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="#platforms">الأقسام</a></li>
+                <li><a href="#downloads">التحميلات</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- واجهة الترحيب -->
+    <section class="hero">
+        <h1>مكتبة الألعاب والشروحات لكل المنصات</h1>
+        <p>اختر جهازك المفضل واستكشف الألعاب، الأدوات، والحلول التقنية المخصصة له.</p>
+    </section>
+
+    <!-- مساحة إعلانية مجهزة (مكان البنر) -->
+    <div class="ad-container">
+        <div class="ad-box">
+            📢 [ مساحة إعلانية مجهزة - Ad Banner ]
+        </div>
+    </div>
+
+    <!-- أقسام الأجهزة والمنصات -->
+    <div class="container" id="platforms">
+        <h2 class="section-title">اختر قسم الجهاز</h2>
+        
+        <!-- أزرار الفلترة -->
+        <div class="platform-bar">
+            <button class="platform-btn active" data-filter="all">الكل</button>
+            <button class="platform-btn" data-filter="pc">PC</button>
+            <button class="platform-btn" data-filter="ps4">PS4</button>
+            <button class="platform-btn" data-filter="ps3">PS3</button>
+            <button class="platform-btn" data-filter="ps2">PS2</button>
+            <button class="platform-btn" data-filter="psp">PSP</button>
+            <button class="platform-btn" data-filter="xbox">Xbox 360</button>
+            <button class="platform-btn" data-filter="android">Android</button>
+        </div>
+
+        <h2 class="section-title" id="downloads">أحدث الملفات والتحميلات</h2>
+        
+        <!-- شبكة البطاقات -->
+        <div class="grid">
+            
+            <!-- PC -->
+            <div class="card" data-category="pc">
+                <img src="https://images.unsplash.com/photo-1550745165-9bc0b252726f?auto=format&fit=crop&w=500&q=80" alt="PC Tools">
+                <div>
+                    <span class="card-tag tag-pc">PC</span>
+                    <h3 class="card-title">حزمة أدوات تسريع ألعاب الحاسوب</h3>
+                    <p class="card-desc">تحسين أداء كروت الشاشة وزيادة الإطارات FPS في الألعاب القوية.</p>
+                </div>
+                <div class="download-box">
+                    <a href="https://example.com/download" target="_blank" class="btn-download">
+                        <span>⬇️</span> تحميـل الآن (PC)
+                    </a>
+                </div>
+            </div>
+
+            <!-- PS4 -->
+            <div class="card" data-category="ps4">
+                <img src="https://images.unsplash.com/photo-1606144042614-b2417e99c4e3?auto=format&fit=crop&w=500&q=80" alt="PS4">
+                <div>
+                    <span class="card-tag tag-ps4">PS4</span>
+                    <h3 class="card-title">مكتبة باتشات وتحديثات PS4</h3>
+                    <p class="card-desc">تحميل وتثبيت أحدث الباتشات والتحديثات للألعاب بصيغة PKG.</p>
+                </div>
+                <div class="download-box">
+                    <a href="https://example.com/download" target="_blank" class="btn-download">
+                        <span>⬇️</span> تحميـل الآن (PKG)
+                    </a>
+                </div>
+            </div>
+
+            <!-- PS3 -->
+            <div class="card" data-category="ps3">
+                <img src="https://images.unsplash.com/photo-1507457373958-b7dad4c87c68?auto=format&fit=crop&w=500&q=80" alt="PS3">
+                <div>
+                    <span class="card-tag tag-ps3">PS3</span>
+                    <h3 class="card-title">تحديثات وهن (HEN) لجهاز PS3</h3>
+                    <p class="card-desc">ملفات ومكتبات العاب وتعديلات مخصصة لأجهزة بلايستيشن 3.</p>
+                </div>
+                <div class="download-box">
+                    <a href="https://example.com/download" target="_blank" class="btn-download">
+                        <span>⬇️</span> تحميـل الآن (PS3)
+                    </a>
+                </div>
+            </div>
+
+            <!-- PS2 -->
+            <div class="card" data-category="ps2">
+                <img src="https://images.unsplash.com/photo-1552820728-8b83bb6b773f?auto=format&fit=crop&w=500&q=80" alt="PS2">
+                <div>
+                    <span class="card-tag tag-ps2">PS2</span>
+                    <h3 class="card-title">برنامج OPL لتشغيل ألعاب PS2 من USB</h3>
+                    <p class="card-desc">أحدث إصدار من برنامج Open PS2 Loader لتشغيل الألعاب عبر الفلاش ميموري.</p>
+                </div>
+                <div class="download-box">
+                    <a href="https://example.com/download" target="_blank" class="btn-download">
+                        <span>⬇️</span> تحميـل OPL
+                    </a>
+                </div>
+            </div>
+
+            <!-- PSP -->
+            <div class="card" data-category="psp">
+                <img src="https://images.unsplash.com/photo-1612287233002-b1d78d3e6761?auto=format&fit=crop&w=500&q=80" alt="PSP">
+                <div>
+                    <span class="card-tag tag-psp">PSP</span>
+                    <h3 class="card-title">معدل ملفات ومحاكي ألعاب PSP</h3>
+                    <p class="card-desc">تجميعة ألعاب خفيفة ومحاكيات تشغيل ألعاب PSP بأعلى جودة.</p>
+                </div>
+                <div class="download-box">
+                    <a href="https://example.com/download" target="_blank" class="btn-download">
+                        <span>⬇️</span> تحميـل للـ PSP
+                    </a>
+                </div>
+            </div>
+
+            <!-- Xbox 360 (Aurora) -->
+            <div class="card" data-category="xbox">
+                <img src="https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=500&q=80" alt="Xbox Aurora">
+                <div>
+                    <span class="card-tag tag-xbox">Xbox 360</span>
+                    <h3 class="card-title">واجهة Aurora وتحديثات Xbox 360 RGH</h3>
+                    <p class="card-desc">أحدث الملفات، الثيمات، والغلافات الخاصة بأجهزة إكس بوكس المعدلة.</p>
+                </div>
+                <div class="download-box">
+                    <a href="https://example.com/download" target="_blank" class="btn-download">
+                        <span>⬇️</span> تحميـل الملفات
+                    </a>
+                </div>
+            </div>
+
+            <!-- Android -->
+            <div class="card" data-category="android">
+                <img src="https://images.unsplash.com/photo-1607604276583-eef5d076aa5f?auto=format&fit=crop&w=500&q=80" alt="Android Emulators">
+                <div>
+                    <span class="card-tag tag-android">Android</span>
+                    <h3 class="card-title">محاكيات أجهزة الألعاب للاندرويد (APK)</h3>
+                    <p class="card-desc">أفضل المحاكيات لتشغيل ألعاب البلايستيشن والكمبيوتر على أجهزة الأندرويد.</p>
+                </div>
+                <div class="download-box">
+                    <a href="https://example.com/download" target="_blank" class="btn-download">
+                        <span>⬇️</span> تحميـل ملف APK
+                    </a>
+                </div>
+            </div>
+
+            <!-- Xbox 360: لعبة Sleeping Dogs -->
+            <div class="card" data-category="xbox">
+                <img src="https://images.unsplash.com/photo-1538481199705-c710c4e965fc?auto=format&fit=crop&w=500&q=80" alt="Sleeping Dogs">
+                <div>
+                    <span class="card-tag tag-xbox">Xbox 360</span>
+                    <h3 class="card-title">لعبة Sleeping Dogs (الكلاب النائمة)</h3>
+                    <p class="card-desc">لعبة الأكشن والعالم المفتوح لجهاز إكس بوكس 360 مع ملف التعريب الكامل.</p>
+                </div>
+                <div class="download-box">
+                    <a href="https://www.mediafire.com/file/w6f0fu5u0bcjl6c/Sleep_dogs.rar/file?action=check" target="_blank" class="btn-download">
+                        <span>⬇️</span> تحميل اللعبة (Mediafire)
+                    </a>
+                    <a href="https://gofile.io/d/Z8G1JjMT" target="_blank" class="btn-download btn-gofile">
+                        <span>🌐</span> تحميـل التعريب (Gofile)
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- أسفل الصفحة -->
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2026 - موقع الألعاب والتقنية</p>
+        <!-- عداد الزوار الحقيقي -->
+        <div class="visitor-counter">
+            <span>👁️ عدد زوار الموقع:</span>
+            <a href="https://www.freecounterstat.com" title="page counter">
+                <img src="https://counter9.optistat.ovh/private/freecounterstat.ch?c=m3y9l7q2s2z6h8x4k1l5p6f3d2a9b4s8" border="0" title="page counter" alt="page counter">
+            </a>
+        </div>
+    </footer>
+
+    <!-- كود الجافاسكريبت لتفعيل الفلترة التفاعلية -->
+    <script>
+        const buttons = document.querySelectorAll('.platform-btn');
+        const cards = document.querySelectorAll('.card');
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                buttons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+
+                const filterValue = button.getAttribute('data-filter');
+
+                cards.forEach(card => {
+                    if (filterValue === 'all' || card.getAttribute('data-category') === filterValue) {
+                        card.classList.remove('hide');
+                    } else {
+                        card.classList.add('hide');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
